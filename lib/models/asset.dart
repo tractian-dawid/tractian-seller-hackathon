@@ -3,6 +3,8 @@ class Asset {
   final String name;
   final String image; // URL da imagem
   final int sensornumber;
+  final String manufacturer;
+  final String model;
   bool isSelected;
   int quantity;
 
@@ -11,6 +13,8 @@ class Asset {
     required this.name,
     required this.image,
     required this.sensornumber,
+    required this.manufacturer,
+    required this.model,
     this.isSelected = false,
     this.quantity = 0,
   });
@@ -21,6 +25,8 @@ class Asset {
       name: json['name'] ?? '',
       image: json['image'] ?? '',
       sensornumber: json['sensornumber'] ?? 1,
+      manufacturer: json['manufacturer'] ?? '',
+      model: json['model'] ?? '',
       isSelected: json['isSelected'] ?? false,
       quantity: json['quantity'] ?? 0,
     );
@@ -32,6 +38,8 @@ class Asset {
       'name': name,
       'image': image,
       'sensornumber': sensornumber,
+      'manufacturer': manufacturer,
+      'model': model,
       'isSelected': isSelected,
       'quantity': quantity,
     };
@@ -42,6 +50,8 @@ class Asset {
     String? name,
     String? image,
     int? sensornumber,
+    String? manufacturer,
+    String? model,
     bool? isSelected,
     int? quantity,
   }) {
@@ -50,6 +60,8 @@ class Asset {
       name: name ?? this.name,
       image: image ?? this.image,
       sensornumber: sensornumber ?? this.sensornumber,
+      manufacturer: manufacturer ?? this.manufacturer,
+      model: model ?? this.model,
       isSelected: isSelected ?? this.isSelected,
       quantity: quantity ?? this.quantity,
     );

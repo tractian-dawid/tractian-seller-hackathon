@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tractian_seller/screens/checkout_payment_screen.dart';
+import 'package:tractian_seller/screens/order_summary_screen.dart';
 import 'package:tractian_seller/services/asset_service.dart';
 
 import '../routes/routes.dart';
@@ -94,12 +95,12 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           // Smart Recommendation Button
           _buildSmartRecommendationButton(isDesktop),
 
-          const SizedBox(height: 32),
+          const DividerWidget(),
 
           // Receiver Section
           _buildReceiverSection(isDesktop),
 
-          const SizedBox(height: 32),
+          const DividerWidget(),
 
           // Price Summary
           _buildPriceSummary(isDesktop),
@@ -138,22 +139,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               borderRadius: BorderRadius.circular(12),
               border: Border.all(color: const Color(0xFFE5E7EB)),
             ),
-            child: Container(
-              decoration: BoxDecoration(
-                color: const Color(0xFF1F2937),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Center(
-                child: Text(
-                  'TRACTIAN',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: isDesktop ? 10 : 8,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
+            child: Center(
+              child: Image.asset('assets/sensor.png'),
             ),
           ),
 
@@ -303,7 +290,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         decoration: BoxDecoration(
           color: _recommendation != null
               ? Colors.green.shade50
-              : Colors.blue.shade100,
+              : Colors.blue.shade50,
           borderRadius: BorderRadius.circular(12),
           border: Border.all(
             color: _recommendation != null
@@ -379,138 +366,211 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   }
 
   Widget _buildReceiverSection(bool isDesktop) {
-    return Container(
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFE5E7EB)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Receiver Product Section
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Product Image
-              Container(
-                width: isDesktop ? 100 : 80,
-                height: isDesktop ? 100 : 80,
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(12),
-                  border: Border.all(color: const Color(0xFFE5E7EB)),
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF1F2937),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'TRACTIAN',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: isDesktop ? 8 : 6,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Receiver Product Section
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Product Image
+            Container(
+              width: isDesktop ? 100 : 80,
+              height: isDesktop ? 100 : 80,
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: const Color(0xFFE5E7EB)),
               ),
+              child: Center(
+                child: Image.asset('assets/gateway.png'),
+              ),
+            ),
 
-              const SizedBox(width: 16),
+            const SizedBox(width: 16),
 
-              // Product Details
-              Expanded(
-                child: SizedBox(
-                  height: isDesktop ? 100 : 80,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Receiver',
-                                style: TextStyle(
-                                  fontSize: isDesktop ? 18 : 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: const Color(0xFF1F2937),
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
-                                'Ultra',
-                                style: TextStyle(
-                                  fontSize: isDesktop ? 14 : 12,
-                                  color: const Color(0xFF6B7280),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 6),
-                            decoration: BoxDecoration(
-                              color: const Color(0xFFDEF7EC),
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(
-                                  color:
-                                      const Color(0xFF10B981).withOpacity(0.2)),
-                            ),
-                            child: Text(
-                              'Included',
+            // Product Details
+            Expanded(
+              child: SizedBox(
+                height: isDesktop ? 100 : 80,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Receiver',
                               style: TextStyle(
-                                fontSize: isDesktop ? 12 : 10,
-                                fontWeight: FontWeight.w600,
-                                color: const Color(0xFF065F46),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 4),
-                      Expanded(
-                        child: Container(
-                          width: double.infinity,
-                          height: 30,
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFF9FAFB),
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: const Color(0xFFE5E7EB)),
-                          ),
-                          child: Center(
-                            child: Text(
-                              '$_numberOfLocations uni',
-                              style: TextStyle(
-                                fontSize: isDesktop ? 16 : 14,
-                                fontWeight: FontWeight.w400,
+                                fontSize: isDesktop ? 18 : 16,
+                                fontWeight: FontWeight.bold,
                                 color: const Color(0xFF1F2937),
                               ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              'Ultra',
+                              style: TextStyle(
+                                fontSize: isDesktop ? 14 : 12,
+                                color: const Color(0xFF6B7280),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 6),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFDEF7EC),
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                                color:
+                                    const Color(0xFF10B981).withOpacity(0.2)),
+                          ),
+                          child: Text(
+                            'Included',
+                            style: TextStyle(
+                              fontSize: isDesktop ? 12 : 10,
+                              fontWeight: FontWeight.w600,
+                              color: const Color(0xFF065F46),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Expanded(
+                      child: Container(
+                        width: double.infinity,
+                        height: 30,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFF9FAFB),
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: const Color(0xFFE5E7EB)),
+                        ),
+                        child: Center(
+                          child: Text(
+                            '$_numberOfLocations uni',
+                            style: TextStyle(
+                              fontSize: isDesktop ? 16 : 14,
+                              fontWeight: FontWeight.w400,
+                              color: const Color(0xFF1F2937),
                             ),
                           ),
                         ),
                       ),
-                    ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+
+        const SizedBox(height: 16),
+
+        // Distance Question
+        Text(
+          'Is the distance between the sensors less than 100 meters?',
+          style: TextStyle(
+            fontSize: isDesktop ? 16 : 14,
+            fontWeight: FontWeight.w500,
+            color: const Color(0xFF1F2937),
+          ),
+        ),
+
+        const SizedBox(height: 16),
+
+        // Yes/No Buttons
+        Row(
+          children: [
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _isDistanceLessThan100m = true;
+                    _numberOfLocations = 1;
+                  });
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  decoration: BoxDecoration(
+                    color: _isDistanceLessThan100m == true
+                        ? const Color(0xFF2563EB)
+                        : Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      color: _isDistanceLessThan100m == true
+                          ? const Color(0xFF2563EB)
+                          : const Color(0xFFE5E7EB),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Yes',
+                      style: TextStyle(
+                        fontSize: isDesktop ? 14 : 12,
+                        fontWeight: FontWeight.w600,
+                        color: _isDistanceLessThan100m == true
+                            ? Colors.white
+                            : const Color(0xFF6B7280),
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _isDistanceLessThan100m = false;
+                    _numberOfLocations = 2;
+                  });
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  decoration: BoxDecoration(
+                    color: _isDistanceLessThan100m == false
+                        ? const Color(0xFF2563EB)
+                        : Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(
+                      color: _isDistanceLessThan100m == false
+                          ? const Color(0xFF2563EB)
+                          : const Color(0xFFE5E7EB),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'No',
+                      style: TextStyle(
+                        fontSize: isDesktop ? 14 : 12,
+                        fontWeight: FontWeight.w600,
+                        color: _isDistanceLessThan100m == false
+                            ? Colors.white
+                            : const Color(0xFF6B7280),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
 
-          const SizedBox(height: 16),
+        // Additional section when "No" is selected
+        if (_isDistanceLessThan100m == false) ...[
+          const SizedBox(height: 24),
 
-          // Distance Question
           Text(
-            'Is the distance between the sensors less than 100 meters?',
+            'Number of Locations (100m apart)',
             style: TextStyle(
               fontSize: isDesktop ? 16 : 14,
               fontWeight: FontWeight.w500,
@@ -520,158 +580,63 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
           const SizedBox(height: 16),
 
-          // Yes/No Buttons
+          // Location Number Selector
           Row(
             children: [
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _isDistanceLessThan100m = true;
-                      _numberOfLocations = 1;
-                    });
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    decoration: BoxDecoration(
-                      color: _isDistanceLessThan100m == true
-                          ? const Color(0xFF2563EB)
-                          : Colors.white,
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(
-                        color: _isDistanceLessThan100m == true
+              for (int i = 2; i <= 6; i++) ...[
+                if (i > 2) const SizedBox(width: 12),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _numberOfLocations = i;
+                      });
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      decoration: BoxDecoration(
+                        color: _numberOfLocations == i
                             ? const Color(0xFF2563EB)
-                            : const Color(0xFFE5E7EB),
+                            : Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(
+                          color: _numberOfLocations == i
+                              ? const Color(0xFF2563EB)
+                              : const Color(0xFFE5E7EB),
+                        ),
                       ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Yes',
-                        style: TextStyle(
-                          fontSize: isDesktop ? 14 : 12,
-                          fontWeight: FontWeight.w600,
-                          color: _isDistanceLessThan100m == true
-                              ? Colors.white
-                              : const Color(0xFF6B7280),
+                      child: Center(
+                        child: Text(
+                          i == 6 ? '+6' : '$i',
+                          style: TextStyle(
+                            fontSize: isDesktop ? 14 : 12,
+                            fontWeight: FontWeight.w600,
+                            color: _numberOfLocations == i
+                                ? Colors.white
+                                : const Color(0xFF6B7280),
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    setState(() {
-                      _isDistanceLessThan100m = false;
-                      _numberOfLocations = 2;
-                    });
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    decoration: BoxDecoration(
-                      color: _isDistanceLessThan100m == false
-                          ? const Color(0xFF2563EB)
-                          : Colors.white,
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(
-                        color: _isDistanceLessThan100m == false
-                            ? const Color(0xFF2563EB)
-                            : const Color(0xFFE5E7EB),
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'No',
-                        style: TextStyle(
-                          fontSize: isDesktop ? 14 : 12,
-                          fontWeight: FontWeight.w600,
-                          color: _isDistanceLessThan100m == false
-                              ? Colors.white
-                              : const Color(0xFF6B7280),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              ],
             ],
           ),
 
-          // Additional section when "No" is selected
-          if (_isDistanceLessThan100m == false) ...[
-            const SizedBox(height: 24),
+          const SizedBox(height: 16),
 
-            Text(
-              'Number of Locations (100m apart)',
-              style: TextStyle(
-                fontSize: isDesktop ? 16 : 14,
-                fontWeight: FontWeight.w500,
-                color: const Color(0xFF1F2937),
-              ),
+          // Helper text
+          Text(
+            'The receiver works within 100 meters.\nPlease enter the number of locations that are more than 100 meters apart',
+            style: TextStyle(
+              fontSize: isDesktop ? 12 : 11,
+              color: const Color(0xFF6B7280),
+              height: 1.4,
             ),
-
-            const SizedBox(height: 16),
-
-            // Location Number Selector
-            Row(
-              children: [
-                for (int i = 2; i <= 6; i++) ...[
-                  if (i > 2) const SizedBox(width: 12),
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          _numberOfLocations = i;
-                        });
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                        decoration: BoxDecoration(
-                          color: _numberOfLocations == i
-                              ? const Color(0xFF2563EB)
-                              : Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color: _numberOfLocations == i
-                                ? const Color(0xFF2563EB)
-                                : const Color(0xFFE5E7EB),
-                          ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            i == 6 ? '+6' : '$i',
-                            style: TextStyle(
-                              fontSize: isDesktop ? 14 : 12,
-                              fontWeight: FontWeight.w600,
-                              color: _numberOfLocations == i
-                                  ? Colors.white
-                                  : const Color(0xFF6B7280),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ],
-            ),
-
-            const SizedBox(height: 16),
-
-            // Helper text
-            Text(
-              'The receiver works within 100 meters.\nPlease enter the number of locations that are more than 100 meters apart',
-              style: TextStyle(
-                fontSize: isDesktop ? 12 : 11,
-                color: const Color(0xFF6B7280),
-                height: 1.4,
-              ),
-            ),
-          ],
+          ),
         ],
-      ),
+      ],
     );
   }
 

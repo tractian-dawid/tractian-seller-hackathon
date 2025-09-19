@@ -68,9 +68,9 @@ class OrderSummaryScreen extends StatelessWidget {
                           _buildTitleWithBackButton(context, isDesktop),
                           const SizedBox(height: 24),
                           _buildOrderDetailsCard(isDesktop),
-                          _Divider(),
+                          DividerWidget(),
                           _buildDeliveryCard(isDesktop),
-                          _Divider(),
+                          DividerWidget(),
                           _buildTimelineCard(isDesktop),
                           const SizedBox(height: 24),
                         ],
@@ -455,8 +455,8 @@ class OrderSummaryScreen extends StatelessWidget {
   }
 }
 
-class _Divider extends StatelessWidget {
-  const _Divider();
+class DividerWidget extends StatelessWidget {
+  const DividerWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:tractian_seller/models/asset.dart';
 import 'package:tractian_seller/services/asset_service.dart';
 
@@ -174,33 +175,21 @@ class _AssetSelectionScreenState extends State<AssetSelectionScreen> {
   }
 
   Widget _buildTitleSection(bool isDesktop) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            IconButton(
-              onPressed: () => AppRoutes.goBack(context),
-              icon: const Icon(Icons.arrow_back),
-              color: const Color(0xFF6B7280),
+    return Container(
+      padding: isDesktop ? const EdgeInsets.symmetric(horizontal: 56) : null,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Select the assets you want to monitor',
+            style: TextStyle(
+              fontSize: isDesktop ? 32 : 24,
+              fontWeight: FontWeight.bold,
+              color: const Color(0xFF1F2937),
             ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: Text(
-                'Select the assets you want to monitor',
-                style: TextStyle(
-                  fontSize: isDesktop ? 32 : 24,
-                  fontWeight: FontWeight.bold,
-                  color: const Color(0xFF1F2937),
-                ),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 16),
-        Padding(
-          padding: const EdgeInsets.only(left: 56),
-          child: Text(
+          ),
+          const SizedBox(height: 16),
+          Text(
             'Choose the equipment you want to monitor and we will calculate the ideal number of sensors for your operation.',
             style: TextStyle(
               fontSize: isDesktop ? 18 : 16,
@@ -208,14 +197,14 @@ class _AssetSelectionScreenState extends State<AssetSelectionScreen> {
               height: 1.5,
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
   Widget _buildSearchBar(bool isDesktop) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 56),
+      margin: isDesktop ? const EdgeInsets.symmetric(horizontal: 56) : null,
       child: TextField(
         controller: _searchController,
         decoration: InputDecoration(
@@ -244,7 +233,7 @@ class _AssetSelectionScreenState extends State<AssetSelectionScreen> {
 
   Widget _buildAISuggestionButton(bool isDesktop) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 56),
+      margin: isDesktop ? const EdgeInsets.symmetric(horizontal: 56) : null,
       child: InkWell(
         onTap: () async {
           // Navegar para a tela da câmera AI
@@ -282,15 +271,7 @@ class _AssetSelectionScreenState extends State<AssetSelectionScreen> {
             children: [
               Container(
                 padding: const EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF2563EB).withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: const Icon(
-                  Icons.camera_alt_outlined,
-                  color: Color(0xFF2563EB),
-                  size: 20,
-                ),
+                child: SvgPicture.asset('assets/Union.svg'),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -330,7 +311,7 @@ class _AssetSelectionScreenState extends State<AssetSelectionScreen> {
 
   Widget _buildSelectedCounter(bool isDesktop) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 56),
+      margin: isDesktop ? const EdgeInsets.symmetric(horizontal: 56) : null,
       child: Text(
         '$_selectedAssetsCount Assets selected',
         style: TextStyle(
@@ -381,7 +362,7 @@ class _AssetSelectionScreenState extends State<AssetSelectionScreen> {
     }
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 56),
+      margin: isDesktop ? const EdgeInsets.symmetric(horizontal: 56) : null,
       child: Column(
         children: _filteredAssets
             .map((asset) => _buildAssetCard(asset, isDesktop))
@@ -475,32 +456,19 @@ class _AssetSelectionScreenState extends State<AssetSelectionScreen> {
                     ),
                     const SizedBox(height: 4),
                     Text(
-                      '${asset.sensornumber} recommended sensors',
+                      asset.manufacturer,
                       style: TextStyle(
-                        fontSize: isDesktop ? 14 : 12,
-                        color: const Color(0xFF6B7280),
+                        fontWeight: FontWeight.w400,
+                        color: Colors.grey.shade500,
                       ),
                     ),
                     const SizedBox(height: 4),
-                    Row(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 2),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFEBF8FF),
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: Text(
-                            'ID: ${asset.id}',
-                            style: TextStyle(
-                              fontSize: isDesktop ? 12 : 10,
-                              color: const Color(0xFF1E40AF),
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ],
+                    Text(
+                      asset.model,
+                      style: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        color: Colors.grey.shade800,
+                      ),
                     ),
                   ],
                 ),
@@ -624,7 +592,7 @@ class _AssetSelectionScreenState extends State<AssetSelectionScreen> {
 
   Widget _buildContinueButton(bool isDesktop) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 56),
+      margin: isDesktop ? const EdgeInsets.symmetric(horizontal: 56) : null,
       width: double.infinity,
       child: _selectedAssetsCount > 0
           ? Button(
