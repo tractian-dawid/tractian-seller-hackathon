@@ -73,6 +73,8 @@ class AiAssetService {
       if (identifiedAsset != null) {
         final mainAsset = Asset(
           id: DateTime.now().millisecondsSinceEpoch,
+          manufacturer: identifiedAsset['manufacturer'] ?? '',
+          model: identifiedAsset['model'] ?? '',
           name: identifiedAsset['name'] ?? 'Asset Identificado por IA',
           image: identifiedAsset['image'] ??
               'https://example.com/images/identified-asset.jpg',
@@ -88,6 +90,8 @@ class AiAssetService {
         for (final assetData in similarAssets) {
           final asset = Asset(
             id: DateTime.now().millisecondsSinceEpoch + assets.length,
+            manufacturer: assetData['manufacturer'] ?? '',
+            model: assetData['model'] ?? '',
             name: assetData['name'] ?? 'Asset Similar',
             image: assetData['image'] ??
                 'https://example.com/images/similar-asset.jpg',
@@ -106,6 +110,8 @@ class AiAssetService {
           name: basicAnalysis?['detected_type'] ?? 'Equipamento Industrial',
           image: 'https://example.com/images/fallback-asset.jpg',
           sensornumber: 2,
+          manufacturer: basicAnalysis?['manufacturer'] ?? '',
+          model: basicAnalysis?['model'] ?? '',
           isSelected: false,
         );
         assets.add(fallbackAsset);
